@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <title th:text="#{email.verifySubcription.title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" th:href="@{|${baseUrl}/favicon.ico|}" />
+  </head>
+  <body>
+    <p>To verify your subcription, please click on the URL below:</p>
+    <p>
+      <a th:with="url=(@{|${baseUrl}/newsletter/verify_subcription?email=${email}|})" th:href="${url}">Link</a>
+    </p>
+    <p>
+      <span>Regards, </span>
+      <br />
+      <em th:text="#{email.signature}"></em>
+    </p>
+  </body>
+</html>

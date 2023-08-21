@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Coffee_Landscape" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="df013db5-f76e-44d3-b0df-bcbc46d93160">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="createdBy_fullname" class="java.lang.String"/>
+	<parameter name="dateFrom" class="java.lang.String"/>
+	<parameter name="dateTo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="month" class="java.lang.String"/>
+	<field name="suiteTypeName" class="java.lang.String"/>
+	<field name="suiteStyleName" class="java.lang.String"/>
+	<field name="occupiedNum" class="java.lang.Integer"/>
+	<field name="total" class="java.lang.Integer"/>
+	<field name="percent" class="java.lang.Float"/>
+	<group name="GroupByMonth">
+		<groupExpression><![CDATA[$F{month}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<textField>
+					<reportElement mode="Opaque" x="1" y="2" width="800" height="30" backcolor="#F2EBDF" uuid="df4cde5b-ba3f-4c15-9039-3d98a54bde45">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="981d3271-9d44-4ba1-9427-e4b2dc17d9c2"/>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="TimeRomanCustomExt" size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Tháng " + $F{month}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="109" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" mode="Opaque" x="1" y="0" width="801" height="62" backcolor="#FFE8B8" uuid="bc1ce1da-8232-46ea-be55-cec4abb986dd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TimeRomanCustomExt" size="30"/>
+				</textElement>
+				<text><![CDATA[BÁO CÁO CÔNG SUẤT PHÒNG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="90" width="91" height="19" uuid="8240065e-64b6-4170-b5d9-6341598e7b35"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TimeRomanCustomExt" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nhân viên lập:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="71" width="91" height="19" uuid="e557b783-7b69-4a64-a5a4-bcc714fa4c59"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TimeRomanCustomExt" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ngày lập:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="680" y="90" width="122" height="19" uuid="832fe0b3-e339-46cb-9fa6-8c73c0622492"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TimeRomanCustomExt" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{createdBy_fullname}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="680" y="70" width="122" height="20" uuid="e27d8dd5-b233-42f4-a7b4-87287e4af93d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TimeRomanCustomExt" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="72" width="91" height="19" uuid="549f9482-6b15-40c2-a8d4-99b24eacc3ff"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TimeRomanCustomExt" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Từ ngày:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="71" width="122" height="20" uuid="dd936946-04c7-4d26-858f-7691e666668c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TimeRomanCustomExt" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dateFrom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="90" width="91" height="19" uuid="cf485981-775c-4947-8efb-da04b463cd94"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TimeRomanCustomExt" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Đến ngày:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="89" width="122" height="20" uuid="48e57c03-3df9-44cd-a95f-99247a2f27af"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TimeRomanCustomExt" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dateTo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="10" width="802" height="1" uuid="e9d2002a-c8ee-4649-a258-640dad29110c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="162" y="10" width="160" height="28" uuid="7c223f0b-b2a9-4889-8441-1847703c0372">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d1409b8d-8e8e-427d-aa50-f03a9189a9c4"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TimeRomanCustomExt" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Loại phòng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="10" width="160" height="28" uuid="50d4d278-d92f-49b0-accd-4150fe1361a5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f0d2b2b8-0b59-44d7-a5b1-11c788426058"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TimeRomanCustomExt" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kiểu phòng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="482" y="10" width="160" height="28" uuid="f99d3da5-be9b-4709-85e6-1c45ab18d817">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b1f8a8f0-fa7a-4bfb-92c2-64e8f9d9e62c"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TimeRomanCustomExt" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Số lượt thuê]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="642" y="10" width="160" height="28" uuid="b470ab81-fbe6-47de-9e50-2e2e7d1aca10">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="aca3247f-9b5b-400c-897b-27df93a579b0"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TimeRomanCustomExt" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Công suất]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="160" y="0" width="160" height="30" uuid="7862dc92-b7de-44c5-8f69-ed321a677783">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d1409b8d-8e8e-427d-aa50-f03a9189a9c4"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TimeRomanCustomExt" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{suiteTypeName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="0" width="160" height="30" uuid="ebc1faa5-b48d-4bb3-a8ef-f098cee229fc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f0d2b2b8-0b59-44d7-a5b1-11c788426058"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TimeRomanCustomExt" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{suiteStyleName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="160" height="30" uuid="a9eb7090-fe1c-468e-b1a3-c94983397fed">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b1f8a8f0-fa7a-4bfb-92c2-64e8f9d9e62c"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TimeRomanCustomExt" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{occupiedNum} + "/" + $F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="640" y="0" width="160" height="30" uuid="693bace7-abd9-4375-b8f3-6cafcef6ea37">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="aca3247f-9b5b-400c-897b-27df93a579b0"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TimeRomanCustomExt" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{percent} + " %"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="21" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1" uuid="fa5e88d5-a011-4e32-8f12-ce923f903111"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Transparent" x="0" y="1" width="800" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="5d8169bd-4a75-48c8-8a68-6d3ad5ba9402"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="760" y="2" width="40" height="20" forecolor="#736343" uuid="e5e27efa-b599-499b-9ca3-848cb511cb7b"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TimeRomanCustomExt" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="680" y="2" width="80" height="20" forecolor="#736343" uuid="18cfe1ca-f7d6-48b0-9827-28578b42a5e0"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="TimeRomanCustomExt" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

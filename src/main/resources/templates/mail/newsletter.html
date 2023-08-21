@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <title th:text="#{email.newsletter.title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" th:href="@{|${baseUrl}/favicon.ico|}" />
+  </head>
+  <body>
+    <p th:text="${title}"></p>
+    <p th:text="${content}"></p>
+    <p>
+      <a th:href="@{|${baseUrl}/newsletter/unsubscribe?email=${email}|}">Unsubcribe</a>
+    </p>
+    <p>
+      <span>Regards, </span>
+      <br />
+      <em th:text="#{email.signature}"></em>
+    </p>
+  </body>
+</html>

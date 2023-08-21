@@ -1,0 +1,150 @@
+spring:
+  profiles:
+    active: test
+  application:
+    name: lotusvietws-test
+  main:
+    allow-bean-definition-overriding: true
+  task:
+    execution:
+      thread-name-prefix: app-task-
+      pool:
+        core-size: 1
+        max-size: 50
+        queue-capacity: 10000
+    scheduling:
+      thread-name-prefix: app-scheduling-
+      pool:
+        size: 20
+  thymeleaf:
+    mode: html
+    cache: false
+  messages:
+    basename: i18n/messages
+    cache-duration: PT1S # 1 second, see the ISO 8601 standard
+  jmx:
+    enabled: false
+  mvc:
+    async:
+      request-timeout: 600s
+    throw-exception-if-no-handler-found: true
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: hoteldb
+  jpa:
+    open-in-view: false
+    properties:
+      javax.persistence.sharedCache.mode: ENABLE_SELECTIVE
+      hibernate.jdbc.time_zone: UTC
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: true
+      hibernate.cache.use_second_level_cache: true
+      hibernate.cache.use_query_cache: false
+      hibernate.cache.use_reference_entries: true
+      hibernate.cache.region.factory_class: jcache
+      hibernate.javax.cache.provider: org.ehcache.jsr107.EhcacheCachingProvider
+      hibernate.show_sql: false
+      hibernate.jdbc.batch_size: 10
+      hibernate.jdbc.batch_versioned_data: true
+      hibernate.order_inserts: true
+      hibernate.order_updates: true
+      hibernate.jdbc.fetch_size: 50
+      hibernate.criteria.literal_handling_mode: BIND
+      hibernate.query.fail_on_pagination_over_collection_fetch: true
+      hibernate.query.in_clause_parameter_padding: true
+    hibernate:
+      ddl-auto: none
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  transaction:
+    default-timeout: 10s
+    rollback-on-commit-failure: true
+  mail:
+    host: smtp.mailtrap.io
+    port: 587
+    username: 96e72311075a1b
+    password: a7dc6e29db79f7
+    properties:
+      mail.transport.protocol: smtp
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+
+server:
+  port: 10344
+  address: localhost
+
+application:
+  proxy-datasource:
+    name: proxyDataSource
+    log-level: DEBUG
+    slow-query-threshold-miliseconds: 700
+  cors:
+    allowed-origins: ${application.web-client-base-url}
+    allowed-methods: "*"
+    allowed-headers: "*"
+    exposed-headers: "Authorization,Link,X-Entity-Count"
+    allow-credentials: true
+    max-age: 1200
+  web-client-base-url: http://localhost:3000
+  rest-error-docs-base-url: http://localhost:8080/api/doc/rest
+  validation:
+    image:
+      support-type: image/png,image/jpg,image/jpeg
+      pattern: .*.(jpg|png|jpeg)
+    supported-lang-keys: vi, en
+  cloud:
+    aws:
+      credentials:
+        access-key: 
+        secret-key: 
+      s3:
+        base-url: https://${application.cloud.aws.s3.bucket-name}.s3.${application.cloud.aws.s3.region}.amazonaws.com/
+        bucket-name: lotusviets3bucket
+        region: ap-northeast-1
+  paying-service:
+    paypal:
+      client-id: 
+      client-secret:
+      cancel-url: ${application.web-client-base-url}/reservation/checkout/cancel
+      return-url: ${application.web-client-base-url}/reservation/checkout/finish
+  security:
+    content-security-policy: "default-src 'self'; frame-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://storage.googleapis.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:"
+    permission-security-policy: "camera=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), sync-xhr=()"
+    authentication:
+      jwt:
+        # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
+        base64-secret: MDgyOTUxMDA2YTRmYzVhNWFhZDI1NWZmMThhMTUwNGQ1NzdlZDgyZjM4MDQxYTIxYTJhNTQyNDYzMTA1Mjg1OTViMmVhNWNhN2Q3ZmIyMzA1NTJkZjYyZjkxYjNjMmE5ZDI0N2Y5YTNiYzI1MjVkOTI3NzM0YjJjYjdiYTBlMjU=
+        # Token is valid 24 hours
+        token-validity-in-seconds: 86400
+        token-validity-in-seconds-for-remember-me: 2592000
+      oauth2:
+        # After successfully authenticating with the OAuth2 Provider,
+        # we'll be generating an auth token for the user and sending the token to the
+        # redirectUri mentioned by the client in the /oauth2/authorize request.
+        # We're not using cookies because they won't work well in mobile clients.
+        authorized-redirect-uris:
+          - ${application.web-client-base-url}/oauth2/redirect
+          - myandroidapp://oauth2/redirect
+          - myiosapp://oauth2/redirect
+  mail:
+    enabled: true # If e-mail sending is enabled. The standard `spring.mail` keys will need to be configured
+    from: lotusvietvn@localhost # The default "from" address for e-mails
+    base-url: http://127.0.0.1:3000 # URL to the application, used inside e-mails
+
+  async:
+    core-pool-size: 4 # Initial pool size
+    max-pool-size: 50 # Maximum pool size
+    queue-capacity: 10000 # Queue capacity of the poolhttp:
+  http:
+    cache:
+      timeToLiveInDays: 7 # Static assets are cached for 7 days
+  cache:
+    ehcache: # Ehcache configuration
+      time-to-live-seconds: 1800 # By default objects stay 30mins in the cache
+      max-entries: 100 # Number of objects in each cache entry
+  report-name-template:
+    invoice-report: Hoa-don-%s
+    room-occupancy-report: Cong-suat-phong-%s-%s

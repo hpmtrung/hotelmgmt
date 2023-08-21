@@ -1,0 +1,26 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+  devtools:
+    restart:
+      enabled: true
+      additional-exclude: resources/**,**/*Test.class,**/*Tests.class
+    livereload:
+      enabled: false
+  jackson:
+    serialization:
+      indent-output: true # pretty print JSON
+  # Use Mailtrap for mail testing
+  mail:
+    host: smtp.mailtrap.io
+    port: 587
+    username: 
+    password: 
+    properties:
+      mail.transport.protocol: smtp
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+
+logging:
+  config: classpath:logback.xml
